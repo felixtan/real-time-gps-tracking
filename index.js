@@ -46,7 +46,6 @@ fs.readFile('coords.txt', 'utf8', function(err, data) {
 
     data = JSON.parse(data);
     coords = data;
-    console.log(typeof coords);
 });
 
 app.get('/', function(req, res) {
