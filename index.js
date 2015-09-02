@@ -4,6 +4,13 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var fs = require('fs');
+var redis = require('redis');
+var client = redis.createClient();
+
+client.on('connect', function() {
+    console.log('connected to redis');
+});
+
 var app = express();
 
 // Flightaware API
