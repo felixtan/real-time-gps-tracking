@@ -22,7 +22,7 @@ html
         }).addTo(map);
 
         //- var socket = io.connect('http://localhost:3000');
-        var socket = io.connect('https://sleepy-scrubland-9111.herokuapp.com/');
+        var socket = io.connect('https://solar-trackr.herokuapp.com/');
         socket.on('reading', function(coord) {
             if(typeof coord.lat !== 'float') coord.lat = parseFloat(coord.lat);
             if(typeof coord.long !== 'float') coord.long = parseFloat(coord.long);
