@@ -1,13 +1,13 @@
 {
   "name": "senior-design",
   "version": "1.0.0",
-  "description": "",
+  "description": "Real-time GPS tracking web mapping",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "node index.js"
   },
-  "author": "",
+  "author": "Felix Tan",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.13.3",
@@ -16,8 +16,9 @@
     "jade": "^1.11.0",
     "morgan": "^1.6.1",
     "path": "^0.11.14",
-    "restler": "^3.3.0",
-    "socket.io": "^1.3.6",
-    "util": "^0.10.3"
+    "socket.io": "^1.3.6"
+  },
+  "engines": {
+    "node": "0.12.4"
   }
 }

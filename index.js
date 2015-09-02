@@ -3,7 +3,6 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var fs = require('fs');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
@@ -34,6 +33,5 @@ app.post('/', function(req, res, next) {
     res.send({});
 });
 
-server.listen(3000, function() {
-    console.log('listening on port 3000');
-});
+var port = process.env.PORT || 3000;
+server.listen(port);
