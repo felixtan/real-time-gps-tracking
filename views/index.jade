@@ -3,30 +3,31 @@ html
     head
         link(rel='stylesheet', href='http://cdn.leafletjs.com/leaflet-0.7.4/leaflet.css')
         link(href='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.css', rel='stylesheet')
-        link(rel='stylesheet', href='styles/index.css')
+        //- link(rel='stylesheet', href='styles/index.css')
         title Technolojesus
     body
         div(id='map', style='width: 70vw; height: 70vh; margin: 0 auto;')
 
+    script(src='/socket.io/socket.io.js')
     script(src='http://cdn.leafletjs.com/leaflet-0.7.4/leaflet.js')
     script(src='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.js')
     script(type='text/javascript').
-        // mapbox access token
-        //- var steinman = [40.821704, -73.947875];
-        var testCenter = [44.422783, -58.934732];
-        var map = L.map('map').setView(testCenter, 5);
+        var steinman = [40.821704, -73.947875];
+        var map = L.map('map').setView(steinman, 10);
         L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
             attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
             maxZoom: 20,
             id: 'felixtan.91e4625b',
             accessToken: 'pk.eyJ1IjoiZmVsaXh0YW4iLCJhIjoiNWM1ZWUxYjc1MGE1OTMwYzY2N2VlNGQwN2Q5ODViMGYifQ.lLhUVm-1B-GgeqL8qSN24A',
         }).addTo(map);
-        
-        var coords = !{JSON.stringify(coords)};
-        coords.forEach(function(coord, index) {
-            setTimeout(function() {
-                var marker = L.marker([coord.latitude, coord.longitude]).addTo(map);
-            }, index*1000);
+
+        var socket = io.connect('http://localhost:3000');
+        socket.on('reading', function(coord) {
+            if(typeof coord.lat !== 'float') coord.lat = parseFloat(coord.lat);
+            if(typeof coord.long !== 'float') coord.long = parseFloat(coord.long);
+            var marker = L.marker([coord.lat, coord.long]).addTo(map);
         });
+
+
 
         
